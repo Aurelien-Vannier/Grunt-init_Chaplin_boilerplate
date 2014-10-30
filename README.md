@@ -3,7 +3,7 @@ Based on https://github.com/chaplinjs/grunt-init-chaplin.
 
 > Create a complete Chaplin.js application with [grunt-init](http://gruntjs.com/project-scaffolding).
 
-> This boilerplate using Chaplin with :
+This boilerplate using Chaplin with :
 
 - grunt
 - bower

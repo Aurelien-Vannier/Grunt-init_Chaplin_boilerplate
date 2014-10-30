@@ -1,4 +1,4 @@
-# grunt-init Chaplin Boilerplate
+# grunt-init Chaplin Boilerplate V1.0.0
 Based on https://github.com/chaplinjs/grunt-init-chaplin.
 
 > Create a complete Chaplin.js application with [grunt-init](http://gruntjs.com/project-scaffolding).
@@ -74,6 +74,7 @@ grunt server
 
 > now you can connect to your app with url : http://localhost:8000
 
+
 ## Build application for production
 
 ```sh
@@ -86,3 +87,7 @@ Launch prod. application with this commande.
 grunt server_prod
 ```
 
+
+## Changelog
+
+V1.0.0 : initial version

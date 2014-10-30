@@ -4,8 +4,10 @@
 
 /* Bootstrap */
 @import "../components/bootstrap/css/bootstrap.css";
+@import "../components/bootstrap/css/bootstrap-theme.css";
+
 
 /* Application styles
    ------------------ */
-
+@import "./application/layout.css";
 

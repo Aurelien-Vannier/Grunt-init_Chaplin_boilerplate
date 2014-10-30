@@ -12,7 +12,8 @@ requirejs.config({
         backbone: '../components/backbone/js/backbone',
         handlebars: '../components/handlebars/js/handlebars',
         text: '../components/requirejs-text/js/text',
-        chaplin: '../components/chaplin/js/chaplin'
+        chaplin: '../components/chaplin/js/chaplin',
+        bootstrap: '../components/bootstrap/js/bootstrap'
     },
     // Underscore and Backbone are not AMD-capable per default,
     // so we need to use the AMD wrapping of RequireJS
@@ -21,11 +22,14 @@ requirejs.config({
             exports: '_'
         },
         backbone: {
-            deps: ['underscore', 'jquery'],
+            deps: ['underscore', 'jquery', 'bootstrap'],
             exports: 'Backbone'
         },
         handlebars: {
             exports: 'Handlebars'
+        },
+        bootstrap: {
+            deps: ['jquery']
         }
     }
     // For easier development, disable browser caching

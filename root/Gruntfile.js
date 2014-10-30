@@ -162,7 +162,7 @@ module.exports = function (grunt) {
         // -----
         watch: {
             scripts: {
-                files: 'src/**/*.js',
+                files: ['src/scripts/**/*.js', 'src/styles/**/*.css'],
                 tasks: ['jshint', 'copy:static'],
                 options: {
                     livereload: true

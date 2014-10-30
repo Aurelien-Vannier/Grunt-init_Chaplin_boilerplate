@@ -26,7 +26,7 @@ directory (`%USERPROFILE%\.grunt-init\` on Windows). It's recommended that you
 use git to clone this template into that directory, as follows:
 
 ```sh
-git clone git://github.com/chaplinjs/grunt-init-chaplin.git ~/.grunt-init/chaplin-boilerplate
+git clone git://github.com/akenny44/Grunt-init_Chaplin_boilerplate.git ~/.grunt-init/chaplin-boilerplate
 ```
 
 

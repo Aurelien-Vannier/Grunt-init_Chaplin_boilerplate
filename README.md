@@ -16,7 +16,7 @@ Based on https://github.com/chaplinjs/grunt-init-chaplin.
 ## Requirements
 
 - [npm](https://npmjs.org/)
-- [grunt-init][].
+- [grunt-init](http://gruntjs.com/project-scaffolding).
 
 
 ## Installation

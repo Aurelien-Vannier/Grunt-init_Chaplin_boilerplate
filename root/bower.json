@@ -1,0 +1,46 @@
+{
+  "name": "cbi-web-site",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "2.1.x",
+    "underscore": "1.7.x",
+    "backbone": "1.1.x",
+    "requirejs": "2.1.x",
+    "almond": "0.2.x",
+    "chaplin": "1.0.x",
+    "handlebars": "2.0.x",
+    "bootstrap": "3.2.x",
+    "requirejs-text": "~2.0.12"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "dist/jquery.js"
+    },
+    "almond": {
+      "js": "almond.js"
+    },
+    "backbone": {
+      "js": "backbone.js"
+    },
+    "requirejs": {
+      "js": "require.js"
+    },
+    "underscore": {
+      "js": "underscore.js"
+    },
+    "chaplin": {
+      "js": "chaplin.js"
+    },
+    "handlebars": {
+      "js": "handlebars.js"
+    },
+    "bootstrap": {
+      "js": "dist/js/bootstrap.js",
+      "css": "dist/css/*",
+      "font": "dist/font/*"
+    },
+    "requirejs-text": {
+        "js": "text.js"
+    }
+  }
+}

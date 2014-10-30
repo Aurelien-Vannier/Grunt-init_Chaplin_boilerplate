@@ -1,0 +1,7 @@
+# Webstorm folder
+/.idea
+
+# Directory that NPM stores downloaded components.
+/node_modules
+
+

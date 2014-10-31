@@ -10,8 +10,7 @@ requirejs.config({
         jquery: '../components/jquery/js/jquery',
         underscore: '../components/underscore/js/underscore',
         backbone: '../components/backbone/js/backbone',
-        handlebars: '../components/handlebars/js/handlebars',
-        text: '../components/requirejs-text/js/text',
+        handlebars: '../components/handlebars/js/handlebars.runtime',
         chaplin: '../components/chaplin/js/chaplin',
         bootstrap: '../components/bootstrap/js/bootstrap'
     },

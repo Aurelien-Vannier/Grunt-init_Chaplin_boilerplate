@@ -6,7 +6,7 @@
  */
 define([
     'views/base/view',
-    'text!templates/common/navbar.hbs'
+    'templates/common/navbar'
 ], function(View, template) {
     'use strict';
 

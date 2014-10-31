@@ -3,7 +3,7 @@
  */
 define([
     'views/base/view',
-    'text!templates/common/footer.hbs'
+    'templates/common/footer'
 ], function(View, template) {
     'use strict';
 

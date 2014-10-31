@@ -42,7 +42,7 @@ module.exports = function (grunt) {
                 excludeEmpty: true
             },
 
-            'static': {
+            'temp': {
                 files: [
                     {
                         dest: 'temp',
@@ -50,12 +50,8 @@ module.exports = function (grunt) {
                         expand: true,
                         src: [
                             '**/*',
-                            '!*.hbs'
+                            '!**/*.hbs'
                         ]
-                    },
-                    {
-                        src: 'src/index_DEV.html',
-                        dest: 'temp/index.html'
                     }
                 ]
             },
@@ -80,6 +76,21 @@ module.exports = function (grunt) {
             }
         },
 
+        'string-replace': {
+            build: {
+                src: 'src/index.html',
+                dest: 'build/index.html',
+                options: {
+                    replacements: [
+                        {
+                            pattern: "components/requirejs/js/require.js",
+                            replacement: "scripts/main.js"
+                        }
+                    ]
+                }
+            }
+        },
+
         // Stylesheet Compressor
         // ---------------------
         cssjoin: {
@@ -97,6 +108,32 @@ module.exports = function (grunt) {
                 files: {
                     'build/styles/main.css': 'build/styles/main.css'
                 }
+            }
+        },
+
+        // HTML Compressor
+        // ---------------
+        htmlmin: {
+            build: {
+                options: {
+                    removeComments: true,
+                    removeCommentsFromCDATA: true,
+                    removeCDATASectionsFromCDATA: true,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true,
+                },
+
+                files: [{
+                    expand: true,
+                    cwd: 'build',
+                    dest: 'build',
+                    src: '**/*.html'
+                }]
             }
         },
 
@@ -128,24 +165,46 @@ module.exports = function (grunt) {
             ]
         },
 
+        // Micro-templating language
+        // -------------------------
+        handlebars: {
+            compile: {
+                options: {
+                    namespace: false,
+                    amd: true
+                },
+
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/scripts/templates',
+                        src: '**/*.hbs',
+                        dest: 'temp/scripts/templates',
+                        ext: '.js'
+                    }
+                ]
+            }
+        },
+
+
         // Module conversion
         // -----------------
         requirejs: {
-            app: {
+            build: {
                 options: {
-                    mainConfigFile: "src/scripts/config/require-config.js",
+                    mainConfigFile: "temp/scripts/config/require-config.js",
                     include: _(grunt.file.expandMapping(['main*', 'controllers/**/*.js'], '',
                         {
-                            cwd: 'src/scripts/',
+                            cwd: 'temp/scripts/',
                             rename: function (base, path) {
                                 return path.replace(/\.js$/, '');
                             }
                         }
                     )).pluck('dest'),
                     generateSourceMaps: false,
-                    out: "build/scripts/myapp.js",
+                    out: "build/scripts/main.js",
                     optimize: "uglify2",
-                    baseUrl: "src/scripts",
+                    baseUrl: "temp/scripts",
 
                     paths: {
                         "almond": "../components/almond/js/almond"
@@ -173,7 +232,6 @@ module.exports = function (grunt) {
         // Webserver
         // ---------
         connect: {
-
             dev: {
                 options: {
                     hostname: 'localhost',
@@ -220,30 +278,39 @@ module.exports = function (grunt) {
         'jshint'
     ]);
 
+    // Build
+    // -----
+    // Compiles a development build of the application.
+    grunt.registerTask('build_dev', [
+        'clean:temp',
+        'lint',
+        'copy:temp',
+        'handlebars',
+    ]);
+
+    // Compiles a production build of the application.
+    grunt.registerTask('build_prod', [
+        'build_dev',
+        'clean:build',
+        'string-replace:build',
+        'cssjoin',
+        'mincss',
+        'htmlmin:build',
+        'requirejs:build'
+    ]);
+
     // Server
     // ------
     // Compiles a development build of the application; starts an HTTP server
     // on the output; and, initiates a watcher to re-compile automatically.
-    grunt.registerTask('server', [
-        'copy:static',
+    grunt.registerTask('server_dev', [
+        'build_dev',
         'connect:dev',
         'watch'
     ]);
 
-    // Build
-    // -----
-    // Compiles a production build of the application.
-    grunt.registerTask('build', [
-        'clean:build',
-        'jshint',
-        'copy:build',
-        'cssjoin',
-        'mincss',
-        'requirejs:app'
-    ]);
-
     grunt.registerTask('server_prod', [
-        'build',
+        'build_prod',
         'connect:prod',
     ]);
 

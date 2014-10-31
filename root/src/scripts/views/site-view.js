@@ -1,7 +1,7 @@
 /**
  *
  */
-define(['views/base/view', 'text!templates/site.hbs'],
+define(['views/base/view', 'templates/site'],
     function (View, template) {
     'use strict';
 

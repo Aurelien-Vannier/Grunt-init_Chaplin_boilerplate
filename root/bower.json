@@ -9,8 +9,7 @@
     "almond": "0.2.x",
     "chaplin": "1.0.x",
     "handlebars": "2.0.x",
-    "bootstrap": "3.2.x",
-    "requirejs-text": "~2.0.12"
+    "bootstrap": "3.2.x"
   },
   "exportsOverride": {
     "jquery": {
@@ -32,15 +31,12 @@
       "js": "chaplin.js"
     },
     "handlebars": {
-      "js": "handlebars.js"
+      "js": "handlebars.runtime.js"
     },
     "bootstrap": {
       "js": "dist/js/bootstrap.js",
       "css": "dist/css/*",
       "font": "dist/font/*"
-    },
-    "requirejs-text": {
-        "js": "text.js"
     }
   }
 }

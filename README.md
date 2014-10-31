@@ -10,7 +10,7 @@ This boilerplate using Chaplin with :
 - require
 - almond
 - jquery
-- handlebars
+- handlebars (pre-compile template)
 - bootstrap
 
 ## Requirements
@@ -69,7 +69,7 @@ grunt prepare
 For launch application with connect node plugin, run this commande.
 
 ```sh
-grunt server
+grunt server_dev
 ```
 
 > now you can connect to your app with url : http://localhost:8000
@@ -78,7 +78,7 @@ grunt server
 ## Build application for production
 
 ```sh
-grunt build
+grunt build_prod
 ```
 
 Launch prod. application with this commande.

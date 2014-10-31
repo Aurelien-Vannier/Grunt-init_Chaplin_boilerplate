@@ -74,12 +74,29 @@ grunt server_dev
 
 > now you can connect to your app with url : http://localhost:8000
 
+This command will run **build_dev** task for build development appliation.
+
+## Build application for development
+
+```sh
+grunt build_dev
+```
+
+> This commande will do this actions :
+* **JSHint**, a tool that helps to detect errors.
+* pre-compile **Handlebars** templates.
 
 ## Build application for production
 
 ```sh
 grunt build_prod
 ```
+
+> This commande will do this actions :
+* actions in **build_dev** task.
+* join and minify **CSS** files.
+* join and minify **JS** require files.
+* minify **index.html** file.
 
 Launch prod. application with this commande.
 

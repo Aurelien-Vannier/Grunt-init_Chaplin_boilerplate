@@ -104,7 +104,7 @@ Your application folder (build) will contains 3 minifed files (html/javascript/c
 ├── index.html
 └── build
     ├── scripts
-        └── main.js
+    |   └── main.js
     └── styles
         └── main.css
 ```

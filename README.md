@@ -98,7 +98,8 @@ grunt build_prod
 * join and minify **JS** require files.
 * minify **index.html** file.
 
-> Your application folder (build) will contains 3 minifed files (html/javascript/css)
+Your application folder (build) will contains 3 minifed files (html/javascript/css)
+```shell
 .
 ├── index.html
 └── build
@@ -106,7 +107,7 @@ grunt build_prod
         └── main.js
     └── styles
         └── main.css
-
+```
 
 Launch prod. application with this commande.
 

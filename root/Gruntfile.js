@@ -59,35 +59,47 @@ module.exports = function (grunt) {
             build: {
                 files: [
                     {
-                        dest: 'build/',
+                        dest: 'build/fonts',
                         cwd: 'src',
                         expand: true,
+                        flatten: true,
                         src: [
-                            '!**/*.js',
-                            '!**/*.css',
-                            '!**/*.map'
+                            '**/*.eot',
+                            '**/*.svg',
+                            '**/*.ttf',
+                            '**/*.woff'
                         ]
                     },
                     {
-                        src: 'src/index_PROD.html',
-                        dest: 'build/index.html'
+                        dest: 'build',
+                        cwd: 'src',
+                        expand: true,
+                        src: ['index.html']
                     }
                 ]
             }
         },
 
-        'string-replace': {
-            build: {
-                src: 'src/index.html',
-                dest: 'build/index.html',
-                options: {
-                    replacements: [
-                        {
-                            pattern: "components/requirejs/js/require.js",
-                            replacement: "scripts/main.js"
-                        }
-                    ]
-                }
+        replace: {
+            bower_css: {
+                src: ['build/styles/*.css'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: '/components/bootstrap/fonts/',
+                        to: '/fonts/'
+                    }
+                ]
+            },
+            index_build:{
+                src: ['build/index.html'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: 'components/requirejs/js/require.js',
+                        to: 'scripts/main.js'
+                    }
+                ]
             }
         },
 
@@ -128,12 +140,14 @@ module.exports = function (grunt) {
                     removeOptionalTags: true,
                 },
 
-                files: [{
-                    expand: true,
-                    cwd: 'build',
-                    dest: 'build',
-                    src: '**/*.html'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'build',
+                        dest: 'build',
+                        src: '**/*.html'
+                    }
+                ]
             }
         },
 
@@ -226,6 +240,13 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            handlebars: {
+                files: 'src/scripts/templates/**/*.hbs',
+                tasks: 'handlebars:compile',
+                options: {
+                    interrupt: true
+                }
             }
         },
 
@@ -292,11 +313,12 @@ module.exports = function (grunt) {
     grunt.registerTask('build_prod', [
         'build_dev',
         'clean:build',
-        'string-replace:build',
         'cssjoin',
         'mincss',
         'htmlmin:build',
-        'requirejs:build'
+        'requirejs:build',
+        'copy:build',
+        'replace'
     ]);
 
     // Server

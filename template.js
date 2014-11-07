@@ -96,7 +96,7 @@ exports.template = function(grunt, init, done) {
             "js": "chaplin.js"
         },
         "handlebars": {
-            "js": "handlebars.js"
+            "js": "handlebars.runtime.js"
         },
         "bootstrap": {
             "js": "dist/js/bootstrap.js",
